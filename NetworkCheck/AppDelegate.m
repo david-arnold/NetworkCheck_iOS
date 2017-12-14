@@ -14,9 +14,19 @@
 
 @implementation AppDelegate
 
+@synthesize reach;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    // Allocate a reachability object
+    self.reach = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    // Tell the reachability that we DO want to be reachable on 3G/EDGE/CDMA
+    self.reach.reachableOnWWAN = YES;
+    
+    [self.reach startNotifier];
+    
     return YES;
 }
 
